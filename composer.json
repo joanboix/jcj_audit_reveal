@@ -1,0 +1,15 @@
+{
+    "name": "alumne/jcj_audit_reveal",
+    "autoload": {
+        "psr-4": {
+            "Alumne\\JcjAuditReveal\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "joanboix",
+            "email": "joanboix@iesebre.com"
+        }
+    ],
+    "require": {}
+}
