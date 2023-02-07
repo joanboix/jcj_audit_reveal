@@ -1,40 +1,240 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>JCJ-Audit</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section
+                data-background="https://img.freepik.com/fotos-premium/fondo-tecnologia-concepto-proteccion-ciberseguridad_371307-31.jpg?w=996">
+            <h1>JCJ-AUDIT</h1>
+            <h2>ASIX2-MP14</h2>
+            <p>Jaume Gisbert</p>
+            <p>Cinta Zaragoza</p>
+            <p>Joan Boix</p>
+            <p></p>
+            <p style="color: darkred">(V1.0)</p>
+        </section>
+        <section
+                data-background="https://img.freepik.com/vector-gratis/tecnologia-red-futurista-azul_53876-100679.jpg?w=1380&t=st=1675616972~exp=1675617572~hmac=afc3414169b879fbc9efc4a7e12e2d17b63620725e8d1f3125f85ddd16bc318c">
+            <section>
+                <h1>Índex</h1>
+                <ol>
+                    <li>Introducció</li>
+                    <li>Continguts</li>
+                    <li>Objectius</li>
+                    <li>Altres tasques no especificades</li>
+                </ol>
+            </section>
+            <section style="font-size: 35px">
+                <h1>Índex</h1>
+                <ol>
+                    <li>Introducció</li>
+                    <li>Continguts
+                        <ul>
+                            <li>Contracte simbòlic i delimitació d'abast</li>
+                            <li>Consulta API Shodan en Python</li>
+                            <li>Escaneig</li>
+                            <li>Auditoria SSH</li>
+                            <li>Enumeració</li>
+                            <li>Bot de Telegram en Python</li>
+                        </ul>
+                    </li>
+                    <li>Objectius</li>
+                    <li>Altres tasques no especificades</li>
+                </ol>
+            </section>
+            <section>
+                <h1>Índex</h1>
+                <ol>
+                    <li>Introducció</li>
+                    <li>Continguts</li>
+                    <li>Objectius
+                        <ul>
+                            <li>Anàlisi de Riscos</li>
+                            <li>The Harvester des del nostre Script en Python</li>
+                            <li>Més OSINT</li>
+                            <li>Crear un contenidor de Docker per a les Auditories Automatizades</li>
+                        </ul>
+                    </li>
+                    <li>Altres tasques no especificades</li>
+                </ol>
+            </section>
+            <section>
+                <h1>Índex</h1>
+                <ol>
+                    <li>Introducció</li>
+                    <li>Continguts</li>
+                    <li>Objectius</li>
+                    <li>Altres tasques no especificades</li>
+                    <ul>
+                        <li>Disseny de pàgina web</li>
+                    </ul>
+                </ol>
+            </section>
+        </section>
+        <section data-background="#4d7e60">
+            <p>INTRODUCCIÓ:</p>
+            <p>En aquesta presentació veurem i explicarem les diferents tasques que se'ns han assignat, comentarem quin
+                és l'estat en el qual es troben i mostrarem (si és possible), com està implementada dins del nostre
+                projecte.</p>
+        </section>
+        <section>Contingut
+            <section>
+                <h2>Contracte Simbòlic</h2>
+                <p>Aquesta tasca, com el seu nom indica, consta de realitzar un contracte simbòlic on es simula l'acord
+                    amb una empresa per realitzar la nostra auditoria, i es detallen les funcions que és durant a terme
+                    i els límits als quals l'empresa ens dona el permís per investigar.</p>
+            </section>
+            <section>
+                <h2>Contracte Simbòlic</h2>
+                <iframe src="ContracteAuditoriaJCJ.pdf" width=900 height=500></iframe>
+            </section>
+            <section>
+                <h2>Consulta API Shodan</h2>
+                <p>Aquesta tasca es dividia en 4 subtasques on es demanava utilitzar l'API de shodan per realitzar
+                    consultes sobre IP's, noms de dominis, ports i serveis.</p>
+            </section>
+            <section>
+                <h2>Consulta API Shodan</h2>
+                <pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers>
+dnsresolve = 'https://api.shodan.io/dns/resolve?hostnames='
++ domini_objectiu + '&key=' + (
+'q4OUWnLVtDwydVw6mWAFgKU4H0H4mnA9')
+resolved = requests.get(dnsresolve)
+hostip = resolved.json()[domini_objectiu]
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+host = api.host(hostip)
+for item in host['data']:
+    print("Port: %s" % item['port'])
+    objecte = item['data'].split("\n")
+    print(objecte[0])
+					</code></pre>
+            </section>
+            <section>
+                <h2>Consulta API Shodan</h2>
+                <iframe src="Selecció_2552.png" width="700" height="400"></iframe>
+            </section>
+            <section>
+                <h2>Escaneig</h2>
+                <p>En aquesta tasca utilitzem l'eina nmap per:
+                <ol>
+                    <li>Descobrir hosts de xarxa.</li>
+                    <li>Fer un escaneig de ports oberts.</li>
+                    <li>Fer un llistat de serveis i versions d'un, un rang o tots els ports.</li>
+                    <li>Fer un llistat de vulnerabilitats d'un, un rang o tots els serveis.</li>
+                </ol>
+                </p>
+            </section>
+            <section>
+                <h2>Escaneig</h2>
+                <iframe src="Selecció_2553.png" width="800" height="450"></iframe>
+            </section>
+            <section>
+                <h2>Auditoria SSH</h2>
+                <p>Aquesta tasca consta d'utilitzar SSH i crear un menú perquè el client indiqui quines proves vol
+                    llençar.</p>
+            </section>
+            <section>
+                <h2>Auditoria SSH</h2>
+                <pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers>
+    while True:
+    print("1. Escaneig de xarxa")
+    print("2. Escanejar un equip específic")
+    print("3. Sortir")
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+    opcio = int(input("Tria una opció: "))
+
+    if opcio == 1:
+    target = input("Introdueix la xarxa a escanejar (ex. 192.168.1.0/24): ")
+    arguments = input("Introdueix els arguments addicionals (opcional): ")
+    print(ssh_audit_scan(target, arguments))
+
+    elif opcio == 2:
+    target = input("Introdueix la IP de l'equip a escanejar: ")
+    arguments = input("Introdueix els arguments addicionals (opcional): ")
+    print(ssh_audit_scan(target, arguments))
+    elif opcio == 3:
+    break
+    else:
+    print("Opció no vàlida, torna a provar")
+                    </code></pre>
+            </section>
+            <section>
+                <h2>Enumeració</h2>
+                <p>En aquesta tasca utilitzem "enum4linux" per obtindre informació sobre equips Windows.</p>
+            </section>
+            <section>
+                <h2>Bot de Telegram amb Python</h2>
+                <p>El bot de Telegram té la funció de, un cop s'hagi passat tot l'script, rebre els resultats al seu
+                    xat.</p>
+            </section>
+        </section>
+        <section data-background-gradient="linear-gradient(to bottom, #283b95, #17b2c3)">OBJECTIUS</section>
+        <section>Objectius
+            <section>
+                <h2>Anàlisi de Riscos</h2>
+                <p>ANÀLISI DE RISCOS
+                    Consta de fer un petit anàlisi de l'empresa segons el model INCIBE per poder tenir una guia a l'hora
+                    de delimitar prioritats per a l'auditoria.</p>
+            </section>
+            <section>
+                <h2>The Harvester des del nostre Script Python</h2>
+                <p>Aquesta tasca consta en generar un script que utilitzi l'eina TheHarvester amb uns paràmetres que
+                    definirà l'usuari, i implementar-la al nostre codi.</p>
+            </section>
+            <section>
+                <h2>Més OSINT</h2>
+                <p>Aquesta tasca consta d'utilitzar de forma lliure diferents eines i recursos que ens puguin ser útils
+                    dins el nostre programa.</p>
+            </section>
+            <section>
+                <h2>Crear un contenidor de Docker per a les Auditories Automatizades</h2>
+                <p>Amb aquesta tasca volem obtindre un contenidor amb Docker que ens permeti executar tot el nostre codi
+                    d'una forma senzilla</p>
+            </section>
+            <section>
+                <h2>Tasques no previstes</h2>
+                <p>Aquest espai el reservem per a tasques que ens puguin sortir arran d'altres tasques o noves tasques
+                    que ens demanin els professors.</p>
+            </section>
+        </section>
+        <section data-background-gradient="linear-gradient(to bottom, #283b95, #17b2c3)">ALTRES TASQUES NO ESPECIFICADES</section>
+        <section>Altres tasques no especificades
+            <section>
+                <h2>Disseny de la pàgina web</h2>
+                <iframe src="2023-02-06%2022-35-08.mp4" width="700" height="400"></iframe>
+            </section>
+        </section>
+        <section data-background-gradient="linear-gradient(to bottom, #008F39, #BDECB6)">GRÀCIES PER LA SEVA ATENCIÓ</section>
+    </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+</script>
+</body>
 </html>
